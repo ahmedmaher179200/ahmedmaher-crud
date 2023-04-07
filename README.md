@@ -21,3 +21,10 @@ composer require ahmedmaher/crud
 ```
 php artisan vendor:publish --provider="ahmedmaher\crud\CrudServiceProvider"
 ```
+
+#Usage
+```
+php artisan crud:generate {table} {model} {path}
+
+php artisan crud:generate products Product Dashboard/folder
+```
