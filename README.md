@@ -22,7 +22,7 @@ composer require ahmedmaher/crud
 php artisan vendor:publish --provider="ahmedmaher\crud\CrudServiceProvider"
 ```
 
-#Usage
+# Usage
 ```
 php artisan crud:generate {table} {model} {path}
 
