@@ -5,6 +5,7 @@
 composer require ahmedmaher/crud
 ```
 
+
 2 - Add the service provider to the providers array in the config/app.php config file as follows:
 ```
 'providers' => [
@@ -15,7 +16,8 @@ composer require ahmedmaher/crud
 ]
 ```
 
-3- Publish the default package's config
+
+3- Publish the default package
 ```
 php artisan vendor:publish --provider="ahmedmaher\crud\CrudServiceProvider"
 ```
