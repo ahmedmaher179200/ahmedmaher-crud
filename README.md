@@ -23,8 +23,9 @@ php artisan vendor:publish --provider="ahmedmaher\crud\CrudServiceProvider"
 ```
 
 # Usage
-to put you view code in index, create, edit, form 
-eidt in ``` App/CrudGenerate/CrudViews ```
+to put you view code in index, create, edit and form edit in ``` App/CrudGenerate/CrudViews ```
+
+to set or edit default properties or methods in model eidt in ``` App/CrudGenerate/model.php ```
 
 run this command
 ```
