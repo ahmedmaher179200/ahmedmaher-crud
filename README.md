@@ -23,6 +23,10 @@ php artisan vendor:publish --provider="ahmedmaher\crud\CrudServiceProvider"
 ```
 
 # Usage
+to put you view code in index, create, edit, form 
+eidt in ``` App/CrudGenerate/CrudViews ```
+
+run this command
 ```
 php artisan crud:generate {table} {model} {path}
 
