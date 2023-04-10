@@ -12,7 +12,7 @@ composer require ahmedmaher/crud
 
     ...
 
-    Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+    ahmedmaher\crud\CrudServiceProvide::class,
 ]
 ```
 
