@@ -56,7 +56,7 @@ class crudGenerate extends Command
         // make controller
         $this->info('make controller...');
         $this->info($seperator);
-        helperBuilder::makeController();
+        helperBuilder::makeController($table, $model, $path);
 
         $this->info("crud success.");
     }
