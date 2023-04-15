@@ -27,9 +27,10 @@ to put you view code in index, create, edit and form edit in ``` App/CrudGenerat
 
 to set or edit default properties or methods in model edit in ``` App/CrudGenerate/model.php ```
 
-run this command
+# run this command
 ```
 php artisan crud:generate {table} {model} {path}
-
-php artisan crud:generate products Product Dashboard/folder
 ```
+
+## example
+php artisan crud:generate products Product Dashboard/folder
