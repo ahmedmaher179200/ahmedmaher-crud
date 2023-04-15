@@ -35,12 +35,10 @@ class crudGenerate extends Command
         $path = $this->argument('path');
         $seperator = '>> ';
 
-        //make migration
         $this->info('make migration...');
         $this->info($seperator);
         helperBuilder::makeMigration($table);
 
-        // make model
         $this->info('make model...');
         $this->info($seperator);
         helperBuilder::makeModel($table, $model);
@@ -53,7 +51,6 @@ class crudGenerate extends Command
         $this->info($seperator);
         helperBuilder::makeViews($table, $path);
 
-        // make controller
         $this->info('make controller...');
         $this->info($seperator);
         helperBuilder::makeController($table, $model, $path);

@@ -29,6 +29,7 @@ class helperBuilder
 
     public static function makeViews($table, $path){
         File::makeDirectory(base_path('resources/views/'. $path . '/' . $table), 0777, true, true);
+        
         $indexViewPath = base_path('resources/views/' . $path  . '/' . $table . '/index.blade.php');
         $createViewPath = base_path('resources/views/' . $path  . '/' . $table . '/create.blade.php');
         $editViewPath = base_path('resources/views/' . $path  . '/' . $table . '/edit.blade.php');;
