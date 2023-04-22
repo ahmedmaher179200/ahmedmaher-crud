@@ -51,7 +51,7 @@ class helperBuilder
         self::copy_file($directory, $newfilePath, $copyfilePath, $table, $model);
     }
 
-    public function copy_file($directory, $newfilePath, $copyfilePath, $table, $model){
+    public static function copy_file($directory, $newfilePath, $copyfilePath, $table, $model){
         File::makeDirectory($directory, 0777, true, true);
 
         //create file
