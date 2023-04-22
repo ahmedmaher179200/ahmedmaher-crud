@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dahsbord;
+namespace App\Http\Controllers\@@path@@;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\@@table@@\CreateRequest;

@@ -10,11 +10,11 @@ class helperBuilder
         Artisan::call('make:migration ' . $table);
     }
 
-    public static function makeModel($table, $model){
+    public static function makeModel($table, $model, $path){
         $directory = base_path('app/Models');
         $newfilePath = base_path('app/Models/' . $model . '.php');
         $copyfilePath = base_path('app/CrudGenerate/model.txt');
-        self::copy_file($directory, $newfilePath, $copyfilePath, $table, $model);
+        self::copy_file($directory, $newfilePath, $copyfilePath, $table, $model, $path);
     }
 
     public static function makeRequest($table){
@@ -29,29 +29,29 @@ class helperBuilder
 
         $newIndexfilePath = base_path('resources/views/' . $path  . '/' . $table . '/index.blade.php');
         $copyfilePath = base_path('app/CrudGenerate/CrudViews/index.blade.php');
-        self::copy_file($directory, $newIndexfilePath, $copyfilePath, $table, $model);
+        self::copy_file($directory, $newIndexfilePath, $copyfilePath, $table, $model, $path);
         
         $newCreatefilePath = base_path('resources/views/' . $path  . '/' . $table . '/create.blade.php');
         $copyfilePath = base_path('app/CrudGenerate/CrudViews/create.blade.php');
-        self::copy_file($directory, $newCreatefilePath, $copyfilePath, $table, $model);
+        self::copy_file($directory, $newCreatefilePath, $copyfilePath, $table, $model, $path);
 
         $newEditfilePath = base_path('resources/views/' . $path  . '/' . $table . '/edit.blade.php');
         $copyfilePath = base_path('app/CrudGenerate/CrudViews/edit.blade.php');
-        self::copy_file($directory, $newEditfilePath, $copyfilePath, $table, $model);
+        self::copy_file($directory, $newEditfilePath, $copyfilePath, $table, $model, $path);
 
         $newFormfilePath = base_path('resources/views/' . $path  . '/' . $table . '/form.blade.php');
         $copyfilePath = base_path('app/CrudGenerate/CrudViews/form.blade.php');
-        self::copy_file($directory, $newFormfilePath, $copyfilePath, $table, $model);
+        self::copy_file($directory, $newFormfilePath, $copyfilePath, $table, $model, $path);
     }
 
     public static function makeController($table, $model, $path){
         $directory = base_path('app/Http/Controllers/' . $path);
         $newfilePath = base_path('app/Http/Controllers/' . $path . '/'. $model .'Controller.php');
         $copyfilePath = base_path('app/CrudGenerate/controller.txt');
-        self::copy_file($directory, $newfilePath, $copyfilePath, $table, $model);
+        self::copy_file($directory, $newfilePath, $copyfilePath, $table, $model, $path);
     }
 
-    public static function copy_file($directory, $newfilePath, $copyfilePath, $table, $model){
+    public static function copy_file($directory, $newfilePath, $copyfilePath, $table, $model, $path){
         File::makeDirectory($directory, 0777, true, true);
 
         //create file
@@ -63,7 +63,8 @@ class helperBuilder
         //handel content
         $content = str_replace('@@table@@', $table ,$file_content);      
         $content = str_replace('@@model@@', $model ,$content);
-        
+        $content = str_replace('@@path@@', $model ,$content);
+
         //put content in new file
         fwrite($newfile, $content);
         fclose($newfile);

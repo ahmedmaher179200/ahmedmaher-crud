@@ -41,7 +41,7 @@ class crudGenerate extends Command
 
         $this->info('make model...');
         $this->info($seperator);
-        helperBuilder::makeModel($table, $model);
+        helperBuilder::makeModel($table, $model, $path);
 
         $this->info('make request...');
         $this->info($seperator);
