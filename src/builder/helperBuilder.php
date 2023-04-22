@@ -10,14 +10,11 @@ class helperBuilder
         Artisan::call('make:migration ' . $table);
     }
 
-
     public static function makeModel($table, $model){
-        $newfile = fopen(base_path('app/Models/' . $model . '.php'),'w');       //create model
-        $file_content = file_get_contents(base_path('app/CrudGenerate/model.txt'));  //take content
-        $content = str_replace('@@table@@', $table ,$file_content);      //handel content
-        $content = str_replace('@@model@@', $model ,$content);      //handel content
-        fwrite($newfile, $content);
-        fclose($newfile);
+        $directory = base_path('app/Models');
+        $newfilePath = base_path('app/Models/' . $model . '.php');
+        $copyfilePath = base_path('app/CrudGenerate/model.txt');
+        self::copy_file($directory, $newfilePath, $copyfilePath, $table, $model);
     }
 
     public static function makeRequest($table){
@@ -27,27 +24,47 @@ class helperBuilder
         Artisan::call('make:request ' . $editRequestPath);
     }
 
-    public static function makeViews($table, $path){
-        File::makeDirectory(base_path('resources/views/'. $path . '/' . $table), 0777, true, true);
+    public static function makeViews($table, $model, $path){
+        $directory = base_path('resources/views/'. $path . '/' . $table);
 
-        $indexViewPath = base_path('resources/views/' . $path  . '/' . $table . '/index.blade.php');
-        $createViewPath = base_path('resources/views/' . $path  . '/' . $table . '/create.blade.php');
-        $editViewPath = base_path('resources/views/' . $path  . '/' . $table . '/edit.blade.php');;
-        $formViewPath = base_path('resources/views/' . $path  . '/' . $table . '/form.blade.php');;
-        copy(base_path('app/CrudGenerate/CrudViews/index.blade.php'), $indexViewPath);
-        copy(base_path('app/CrudGenerate/CrudViews/edit.blade.php'), $editViewPath);
-        copy(base_path('app/CrudGenerate/CrudViews/create.blade.php'), $createViewPath);
-        copy(base_path('app/CrudGenerate/CrudViews/form.blade.php'), $formViewPath);
+        $newIndexfilePath = base_path('resources/views/' . $path  . '/' . $table . '/index.blade.php');
+        $copyfilePath = base_path('app/CrudGenerate/CrudViews/index.blade.php');
+        self::copy_file($directory, $newIndexfilePath, $copyfilePath, $table, $model);
+        
+        $newCreatefilePath = base_path('resources/views/' . $path  . '/' . $table . '/create.blade.php');
+        $copyfilePath = base_path('app/CrudGenerate/CrudViews/create.blade.php');
+        self::copy_file($directory, $newCreatefilePath, $copyfilePath, $table, $model);
+
+        $newEditfilePath = base_path('resources/views/' . $path  . '/' . $table . '/edit.blade.php');
+        $copyfilePath = base_path('app/CrudGenerate/CrudViews/edit.blade.php');
+        self::copy_file($directory, $newEditfilePath, $copyfilePath, $table, $model);
+
+        $newFormfilePath = base_path('resources/views/' . $path  . '/' . $table . '/form.blade.php');
+        $copyfilePath = base_path('app/CrudGenerate/CrudViews/form.blade.php');
+        self::copy_file($directory, $newFormfilePath, $copyfilePath, $table, $model);
     }
 
-
     public static function makeController($table, $model, $path){
-        File::makeDirectory(base_path('app/Http/Controllers/'. $path), 0777, true, true);
+        $directory = base_path('app/Http/Controllers/' . $path);
+        $newfilePath = base_path('app/Http/Controllers/' . $path . '/'. $model .'Controller.php');
+        $copyfilePath = base_path('app/CrudGenerate/controller.txt');
+        self::copy_file($directory, $newfilePath, $copyfilePath, $table, $model);
+    }
 
-        $newfile = fopen(base_path('app/Http/Controllers/' . $path . '/'. $model .'Controller.php'),'w'); //create Controller
-        $file_content = file_get_contents(base_path('app/CrudGenerate/controller.txt'));  //take content
-        $content = str_replace('@@table@@', $table ,$file_content);      //handel content
-        $content = str_replace('@@model@@', $model ,$content);      //handel content
+    public function copy_file($directory, $newfilePath, $copyfilePath, $table, $model){
+        File::makeDirectory($directory, 0777, true, true);
+
+        //create file
+        $newfile = fopen($newfilePath,'w');  
+
+        //take content
+        $file_content = file_get_contents($copyfilePath);
+
+        //handel content
+        $content = str_replace('@@table@@', $table ,$file_content);      
+        $content = str_replace('@@model@@', $model ,$content);
+        
+        //put content in new file
         fwrite($newfile, $content);
         fclose($newfile);
     }

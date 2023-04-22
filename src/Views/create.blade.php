@@ -1,1 +1,3 @@
+@@table@@
+@@model@@
 create

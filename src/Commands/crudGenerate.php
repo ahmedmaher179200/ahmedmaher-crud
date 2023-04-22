@@ -49,7 +49,7 @@ class crudGenerate extends Command
 
         $this->info('make views...');
         $this->info($seperator);
-        helperBuilder::makeViews($table, $path);
+        helperBuilder::makeViews($table, $model, $path);
 
         $this->info('make controller...');
         $this->info($seperator);

@@ -7,7 +7,7 @@ use App\Http\Requests\@@table@@\CreateRequest;
 use App\Http\Requests\@@table@@\EditRequest;
 use Illuminate\Http\Request;
 
-class @@model@@sController extends Controller
+class @@model@@Controller extends Controller
 {
     /**
      * Display a listing of the resource.
