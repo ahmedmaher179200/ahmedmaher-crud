@@ -63,7 +63,7 @@ class helperBuilder
         //handel content
         $content = str_replace('@@table@@', $table ,$file_content);      
         $content = str_replace('@@model@@', $model ,$content);
-        $content = str_replace('@@path@@', $model ,$content);
+        $content = str_replace('@@path@@', $path ,$content);
 
         //put content in new file
         fwrite($newfile, $content);
