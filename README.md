@@ -12,7 +12,7 @@ composer require ahmedmaher/crud
 
     ...
 
-    ahmedmaher\crud\CrudServiceProvide::class,
+    ahmedmaher\crud\CrudServiceProvider::class,
 ]
 ```
 
